@@ -126,4 +126,3 @@ app.listen(8080, () =>{
     console.log("listening to port 8080");
 });
 
-//error is tricky iu m unable to find it ,do u  have anyother browser than chrome .

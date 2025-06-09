@@ -20,7 +20,9 @@ const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
-const dbUrl = process.env.ATLASDB_URL;
+const dbUrl = `mongodb+srv://jyoshna1595:JR%4015092005@cluster0.wj1bm7v.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
+//`mongodb+srv://jyoshna1595:${process.env.CLOUD_DB_PASSWORD}@cluster0.lsx63.mongodb.net/`;
+// const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 
 main()
 .then(() =>{
@@ -33,6 +35,7 @@ main()
 async function main(){
     await mongoose.connect(dbUrl);
 }
+
 
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
@@ -52,6 +55,7 @@ const store = MongoStore.create({
 store.on("error", () => {
     console.log("ERROR in MONGO SESSION STORE",err);
 })
+
 const sessionOptions = {
     store,
     secret: process.env.SECRET,
@@ -111,6 +115,7 @@ app.use("/",userRouter);
 //     console.log("Sample was saved");
 //     res.send("Successful Testing");
 // });
+
 
 app.all("*",(req,res,next) =>{
     next(new ExpressError(404,"Page Not Found"));

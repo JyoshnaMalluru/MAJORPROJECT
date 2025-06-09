@@ -17,9 +17,12 @@ router
         validateListing,
         wrapAsync(listingController.createListing)
     );
-
+//category
+router.get("/category/:category",wrapAsync(listingController.category));
 //New Route
 router.get("/new",isLoggedIn,listingController.renderNewForm);
+router.get("/search/:title",wrapAsync(listingController.search));
+router.get("/i/:place",wrapAsync(listingController.output));
 
 router
     .route("/:id")

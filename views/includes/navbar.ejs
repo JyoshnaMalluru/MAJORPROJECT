@@ -9,6 +9,9 @@
     background-color: #fe424d;
     color: #ffffff;
   }
+  h4{
+    color: #fe424d;
+  }
   .search-btn i{
      display: inline; 
     margin-right: 0.5rem;  
@@ -28,12 +31,12 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link" href="/listings">Explore</a>
+          <a class="nav-link" href="/listings"><h4>JourneyNest</h4></a>
         </div>
         <div class="navbar-nav ms-auto">
-          <form class="d-flex" role="search">
-            <input class="form-control me-2 search-inp" type="search" placeholder="Search destinations" >
-            <button class="btn search-btn" type="submit">
+          <form method="GET" id="searchForm" class="d-flex search" role="search">
+            <input class="form-control me-2 search-inp" name="data" type="search" placeholder="Search destinations" id="searchBar">
+            <button class="btn search-btn" id="search-btn" type="submit">
               <i class="fa-solid fa-magnifying-glass"></i>Search
             </button>
           </form>
@@ -51,3 +54,17 @@
       </div>
     </div>
   </nav>
+  <script>
+    const form = document.getElementById('searchForm');
+    const search = document.getElementById('searchBar');
+    form.addEventListener('submit',(event)=>{
+      event.preventDefault();
+      const searchQ = search.value.trim();
+      if(searchQ){
+        form.action=`/listings/i/${searchQ}`;
+        form.submit();
+      }else{
+        alert('Please enter a search term.');
+      }
+    })
+  </script>
